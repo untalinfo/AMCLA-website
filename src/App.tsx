@@ -3,10 +3,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar.tsx';
 import { HeroVideo } from './components/HeroVideo.tsx';
 import { HeroContent } from './components/HeroContent.tsx';
+import { AulaVirtual } from './components/AulaVirtual.tsx';
 import {
   ClassroomModal,
   CheckoutModal,
@@ -35,8 +36,13 @@ import {
 } from 'lucide-react';
 
 export default function App() {
+  // Navigation view: 'landing' | 'aula-virtual' (omit login for direct access)
+  const [currentView, setCurrentView] = useState<'landing' | 'aula-virtual'>(() => {
+    return window.location.hash === '#aula-virtual' ? 'aula-virtual' : 'landing';
+  });
+
   // Modal states
-  const [isClassroomOpen, setIsClassroomOpen] = useState(false);
+  const [isClassroomModalOpen, setIsClassroomModalOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [isCourseInfoOpen, setIsCourseInfoOpen] = useState(false);
   const [isCorporateOpen, setIsCorporateOpen] = useState(false);
@@ -44,6 +50,74 @@ export default function App() {
 
   // Logo presentation state
   const [logoVariant, setLogoVariant] = useState<LogoVariant>('light');
+
+  // Handle hash change for smooth browser back/forward buttons
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === '#aula-virtual') {
+        setCurrentView('aula-virtual');
+      } else {
+        setCurrentView('landing');
+      }
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const openAulaVirtual = () => {
+    setCurrentView('aula-virtual');
+    window.location.hash = 'aula-virtual';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const backToLanding = () => {
+    setCurrentView('landing');
+    window.location.hash = '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // If student is inside Aula Virtual
+  if (currentView === 'aula-virtual') {
+    return (
+      <div className="min-h-screen bg-[#f8fafc] text-slate-800 antialiased selection:bg-emerald-500 selection:text-white">
+        <AulaVirtual
+          onBackToHome={backToLanding}
+          onOpenCheckout={() => setIsCheckoutOpen(true)}
+        />
+
+        {/* Modales disponibles desde el aula virtual */}
+        <CheckoutModal
+          isOpen={isCheckoutOpen}
+          onClose={() => setIsCheckoutOpen(false)}
+          onOpenClassroom={() => {
+            setIsCheckoutOpen(false);
+            openAulaVirtual();
+          }}
+        />
+
+        <CourseInfoModal
+          isOpen={isCourseInfoOpen}
+          onClose={() => setIsCourseInfoOpen(false)}
+          onOpenCheckout={() => {
+            setIsCourseInfoOpen(false);
+            setIsCheckoutOpen(true);
+          }}
+        />
+
+        <CorporateModal
+          isOpen={isCorporateOpen}
+          onClose={() => setIsCorporateOpen(false)}
+        />
+
+        <ContactModal
+          isOpen={isContactOpen}
+          onClose={() => setIsContactOpen(false)}
+        />
+
+        <WhatsAppButton />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-800 antialiased selection:bg-emerald-500 selection:text-white">
@@ -59,7 +133,7 @@ export default function App() {
 
         {/* NAVEGACIÓN SUPERIOR FLOTANTE CON LOGO AMCLA */}
         <Navbar
-          onOpenClassroom={() => setIsClassroomOpen(true)}
+          onOpenClassroom={openAulaVirtual}
           onOpenCheckout={() => setIsCheckoutOpen(true)}
           onOpenCourseInfo={() => setIsCourseInfoOpen(true)}
           onOpenCorporate={() => setIsCorporateOpen(true)}
@@ -71,7 +145,7 @@ export default function App() {
         <div className="w-full relative z-20 pb-8 sm:pb-12 md:pb-16">
           <HeroContent
             onOpenCheckout={() => setIsCheckoutOpen(true)}
-            onOpenClassroom={() => setIsClassroomOpen(true)}
+            onOpenClassroom={openAulaVirtual}
             onOpenCourseInfo={() => setIsCourseInfoOpen(true)}
           />
         </div>
@@ -196,7 +270,7 @@ export default function App() {
               Preguntas Frecuentes
             </button>
             <button
-              onClick={() => setIsClassroomOpen(true)}
+              onClick={() => setIsClassroomModalOpen(true)}
               className="hover:text-emerald-700 transition-colors cursor-pointer"
             >
               Verificación de Certificados
@@ -214,10 +288,10 @@ export default function App() {
 
       {/* MODALES INTERACTIVOS */}
       <ClassroomModal
-        isOpen={isClassroomOpen}
-        onClose={() => setIsClassroomOpen(false)}
+        isOpen={isClassroomModalOpen}
+        onClose={() => setIsClassroomModalOpen(false)}
         onOpenCheckout={() => {
-          setIsClassroomOpen(false);
+          setIsClassroomModalOpen(false);
           setIsCheckoutOpen(true);
         }}
       />
@@ -227,7 +301,7 @@ export default function App() {
         onClose={() => setIsCheckoutOpen(false)}
         onOpenClassroom={() => {
           setIsCheckoutOpen(false);
-          setIsClassroomOpen(true);
+          openAulaVirtual();
         }}
       />
 
