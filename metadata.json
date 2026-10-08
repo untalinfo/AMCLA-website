@@ -1,0 +1,6 @@
+{
+  "name": "AMCLA - Certificación en Manipulación de Alimentos y BPM",
+  "description": "Capacitación 100% online en Manipulación de Alimentos y BPM en Colombia. Válido ante Secretarías de Salud e INVIMA según Resolución 2674 de 2013. Certificado con QR.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

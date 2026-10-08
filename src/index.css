@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-primary-navy: #0a2540;
+    --color-deep-navy: #0b2545;
+    --color-brand-green: #059669;
+    --color-brand-emerald: #10b981;
+    --color-brand-hover: #047857;
+    --color-bg-hygienic: #f8fafc;
+  }
+
+  body {
+    background-color: var(--color-bg-hygienic);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+}
+
+.hero-section {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.hero-section em,
+.font-serif-italic {
+  font-family: 'Playfair Display', 'Newsreader', Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* Custom hero container shadow from specs */
+.hero-container-shadow {
+  box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08);
+}
+
+/* Hover shine / pulse effects */
+@keyframes subtlePulse {
+  0%, 100% { opacity: 0.95; }
+  50% { opacity: 1; }
+}
+
+.animate-subtle-pulse {
+  animation: subtlePulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Accessible focus ring */
+.focus-ring {
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a2540];
+}

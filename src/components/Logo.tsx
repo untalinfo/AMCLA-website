@@ -1,0 +1,132 @@
+import React from 'react';
+
+export type LogoVariant = 'original' | 'light' | 'badge';
+
+interface LogoProps {
+  className?: string;
+  variant?: LogoVariant;
+  compact?: boolean;
+  height?: number;
+}
+
+export const Logo: React.FC<LogoProps> = ({
+  className = '',
+  variant = 'light',
+  compact = false,
+  height = 44,
+}) => {
+  // If variant is 'badge', render the logo inside a hygienic white frosted pill
+  if (variant === 'badge') {
+    return (
+      <div
+        className={`inline-flex items-center px-3.5 py-1.5 rounded-xl bg-white/95 backdrop-blur-md border border-white shadow-sm hover:bg-white transition-all ${className}`}
+        style={{ height: `${height + 8}px` }}
+      >
+        <img
+          src="/logo_amcla.svg"
+          alt="AMCLA Servicio de Capacitación"
+          className="h-full w-auto object-contain select-none"
+        />
+      </div>
+    );
+  }
+
+  // Variant 'original': Exact colors (#00645a teal, #8ed4aa mint, #b0b8c2 text) with transparent background
+  // Variant 'light': Adapted for dark background (#ffffff white, #8ed4aa mint, #34d399 star, #cbd5e1 text) with transparent background
+  const isLight = variant === 'light';
+  const tealColor = isLight ? '#ffffff' : '#00645a';
+  const mintColor = '#8ed4aa';
+  const starColor = isLight ? '#34d399' : '#00645a';
+  const subtitleColor = isLight ? '#cbd5e1' : '#a0abb7';
+
+  return (
+    <div
+      className={`inline-flex items-center select-none ${className}`}
+      style={{ height: `${height}px` }}
+      aria-label="AMCLA Servicio de Capacitación"
+    >
+      <svg
+        viewBox="100 220 800 480"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-full w-auto max-w-none transition-transform duration-200"
+        aria-hidden="true"
+      >
+        {/* ISOTIPO SUPERIOR: Hoja Crest con Estrella y Nervadura */}
+        <g id="isotipo">
+          {/* Silueta principal de la hoja en verde menta */}
+          <path
+            fill={mintColor}
+            fillRule="evenodd"
+            d="M 488 285 C 498 262 522 258 550 258 C 572 258 584 270 584 294 L 584 340 C 584 372 558 398 522 400 C 488 402 460 388 445 372 L 458 360 C 484 376 512 376 534 362 C 552 350 562 330 562 306 L 562 284 C 542 282 516 288 498 304 Z"
+          />
+
+          {/* Trazo dinámico interior (nervadura de la hoja) */}
+          <path
+            fill={mintColor}
+            d="M 445 388 C 470 350 502 312 542 292 L 535 306 C 500 326 472 360 452 396 Z"
+          />
+
+          {/* Estrella de 5 puntas en el vértice superior izquierdo */}
+          <polygon
+            fill={starColor}
+            points="495,242 501,257 517,257 504,267 509,282 495,273 481,282 486,267 473,257 489,257"
+          />
+        </g>
+
+        {/* PALABRA 'amcLA' */}
+        <g id="wordmark">
+          {/* 1. Letra 'A' */}
+          <path
+            fill={tealColor}
+            fillRule="evenodd"
+            d="M 136 636 L 136 480 C 136 440 162 420 202 420 C 242 420 268 440 268 480 L 268 605 L 228 605 L 228 548 L 178 548 L 178 636 Z M 178 514 L 228 514 L 228 478 C 228 456 216 450 202 450 C 188 450 178 456 178 478 Z"
+          />
+
+          {/* 2. Letra 'm' */}
+          <path
+            fill={mintColor}
+            fillRule="evenodd"
+            d="M 286 601 L 286 470 C 286 438 306 420 338 420 C 368 420 388 438 395 464 C 402 438 422 420 452 420 C 484 420 504 438 504 470 L 504 588 L 466 588 L 466 476 C 466 452 456 446 442 446 C 426 446 414 456 414 478 L 414 590 L 376 590 L 376 476 C 376 452 366 446 352 446 C 336 446 324 456 324 478 L 324 598 Z"
+          />
+
+          {/* 3. Letra 'c' con Punto Central */}
+          <path
+            fill={tealColor}
+            d="M 644 422 L 562 422 C 538 422 524 436 524 460 L 524 554 C 524 576 538 590 562 590 L 644 590 L 644 554 L 566 554 L 566 458 L 644 458 Z"
+          />
+          <circle cx="612" cy="506" r="27" fill={tealColor} />
+
+          {/* 4. Letra 'L' */}
+          <path
+            fill={tealColor}
+            d="M 658 422 L 698 422 L 698 564 L 746 564 L 746 602 C 724 602 696 601 672 598 C 662 597 658 590 658 578 Z"
+          />
+
+          {/* 5. Letra 'A' */}
+          <path
+            fill={tealColor}
+            fillRule="evenodd"
+            d="M 758 608 L 758 478 C 758 438 784 420 824 420 C 864 420 888 438 888 478 L 888 636 L 848 636 L 848 550 L 798 550 L 798 605 Z M 798 516 L 848 516 L 848 478 C 848 456 838 450 824 450 C 810 450 798 456 798 478 Z"
+          />
+        </g>
+
+        {/* SUBTÍTULO: SERVICIO DE CAPACITACIÓN */}
+        {!compact && (
+          <text
+            x="506"
+            y="668"
+            fontFamily="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif"
+            fontSize="28"
+            fontWeight={isLight ? '700' : '800'}
+            letterSpacing="4"
+            fill={subtitleColor}
+            textAnchor="middle"
+          >
+            SERVICIO DE CAPACITACIÓN
+          </text>
+        )}
+      </svg>
+    </div>
+  );
+};
