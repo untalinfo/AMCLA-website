@@ -546,56 +546,44 @@ export const CourseInfoModal: React.FC<CourseInfoModalProps> = ({
           </button>
         </div>
 
-        <div className="p-6 overflow-y-auto space-y-4">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
-            <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
-              <Clock className="w-4 h-4 mx-auto text-emerald-600 mb-1" />
-              <div className="font-bold text-slate-900">40 Horas</div>
-              <div className="text-slate-500">Cronológicas</div>
-            </div>
-            <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
-              <Award className="w-4 h-4 mx-auto text-emerald-600 mb-1" />
-              <div className="font-bold text-slate-900">Certificado QR</div>
-              <div className="text-slate-500">Válido 3 Años</div>
-            </div>
-            <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
-              <Sparkles className="w-4 h-4 mx-auto text-emerald-600 mb-1" />
-              <div className="font-bold text-slate-900">100% Online</div>
-              <div className="text-slate-500">A tu ritmo 24/7</div>
-            </div>
-            <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
-              <ShieldCheck className="w-4 h-4 mx-auto text-emerald-600 mb-1" />
-              <div className="font-bold text-slate-900">Codex Alimentarius</div>
-              <div className="text-slate-500">Estándar oficial</div>
-            </div>
+        <div className="p-6 overflow-y-auto space-y-5">
+          {/* Metadata limpia y no encasillada */}
+          <div className="flex flex-wrap items-center gap-2.5 text-xs text-slate-600 border-b border-slate-100 pb-3">
+            <span className="font-medium text-slate-800">40 Horas de Formación</span>
+            <span aria-hidden="true">·</span>
+            <span>Certificado con Código QR</span>
+            <span aria-hidden="true">·</span>
+            <span>100% Online Asincrónico</span>
+            <span aria-hidden="true">·</span>
+            <span>Resolución 2674 de 2013</span>
           </div>
 
-          <div className="space-y-3 pt-2">
-            <h4 className="text-sm font-bold uppercase tracking-wider text-slate-700">Módulos de Aprendizaje</h4>
+          <div className="space-y-3">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">Módulos de Aprendizaje</h4>
             {modules.map((m) => (
-              <div key={m.num} className="p-3.5 bg-slate-50 hover:bg-emerald-50/40 rounded-xl border border-slate-200 transition-colors">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">
-                    {m.num}
+              <div key={m.num} className="p-3.5 bg-slate-50 rounded-md border border-slate-200/60 transition-colors">
+                <div className="flex items-baseline gap-2 mb-1">
+                  <span className="text-xs font-bold text-emerald-700">
+                    {m.num} —
                   </span>
                   <h5 className="font-semibold text-sm text-slate-900">{m.title}</h5>
                 </div>
-                <p className="text-xs text-slate-600 leading-relaxed pl-1">{m.desc}</p>
+                <p className="text-xs text-slate-600 leading-relaxed">{m.desc}</p>
               </div>
             ))}
           </div>
 
-          <div className="pt-4 border-t border-slate-200 flex flex-col sm:flex-row gap-3 items-center justify-between">
+          <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row gap-3 items-center justify-between">
             <div>
               <span className="text-xs text-slate-500">Inversión promocional Colombia:</span>
-              <div className="text-xl font-black text-emerald-700">$45.000 COP <span className="text-xs font-normal text-slate-400 line-through ml-1">$75.000</span></div>
+              <div className="text-xl font-bold text-emerald-700">$45.000 COP <span className="text-xs font-normal text-slate-400 line-through ml-1">$75.000</span></div>
             </div>
             <button
               onClick={() => {
                 onClose();
                 onOpenCheckout();
               }}
-              className="w-full sm:w-auto py-3 px-6 bg-[#059669] hover:bg-[#047857] text-white font-semibold rounded-lg shadow-md transition-colors"
+              className="w-full sm:w-auto py-2.5 px-6 bg-[#059669] hover:bg-[#047857] text-white font-semibold rounded-md shadow-xs transition-colors cursor-pointer"
             >
               Matricularme en el Curso
             </button>

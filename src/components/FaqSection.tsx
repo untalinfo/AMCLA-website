@@ -100,35 +100,17 @@ export const FaqSection: React.FC<FaqSectionProps> = ({
           <p className="mt-4 text-sm sm:text-base text-slate-600 max-w-xl mx-auto leading-relaxed">
             Claridad total sobre validez sanitaria ante Secretarías de Salud e INVIMA, precios en Colombia ($ COP) y descarga inmediata con código QR.
           </p>
-
-          <div className="mt-4 flex items-center justify-center gap-3 text-xs text-slate-500 font-medium">
-            <button
-              type="button"
-              onClick={expandAll}
-              className="hover:text-emerald-700 transition-colors cursor-pointer"
-            >
-              Expandir todas
-            </button>
-            <span className="text-slate-300">·</span>
-            <button
-              type="button"
-              onClick={collapseAll}
-              className="hover:text-emerald-700 transition-colors cursor-pointer"
-            >
-              Colapsar todas
-            </button>
-          </div>
         </div>
 
-        {/* LISTA LIMPIA, SIN CAJAS NI LÍNEAS EXCESIVAS */}
-        <div className="max-w-3xl mx-auto divide-y divide-slate-200/70" role="region" aria-label="Lista de preguntas">
+        {/* LISTA LIMPIA Y ESPACIOSA SIN LÍNEAS EXCESIVAS */}
+        <div className="max-w-3xl mx-auto space-y-3" role="region" aria-label="Lista de preguntas">
           {FAQ_DATA.map((faq) => {
             const isOpen = openIds.includes(faq.id);
             const questionId = `${baseId}-q-${faq.id}`;
             const answerId = `${baseId}-a-${faq.id}`;
 
             return (
-              <div key={faq.id} className="py-5 sm:py-6 group">
+              <div key={faq.id} className="p-4 sm:p-5 rounded-md bg-white border border-slate-200/60 shadow-2xs group transition-colors">
                 <h3>
                   <button
                     type="button"
@@ -142,13 +124,11 @@ export const FaqSection: React.FC<FaqSectionProps> = ({
                       {faq.question}
                     </span>
 
-                    <span
-                      className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-200 mt-0.5 ${
-                        isOpen ? 'rotate-180 text-emerald-700' : 'text-slate-400 group-hover:text-slate-700'
+                    <ChevronDown
+                      className={`w-5 h-5 flex-shrink-0 transition-transform duration-200 mt-0.5 ${
+                        isOpen ? 'rotate-180 text-emerald-700' : 'text-slate-400 group-hover:text-slate-600'
                       }`}
-                    >
-                      <ChevronDown className="w-4 h-4" />
-                    </span>
+                    />
                   </button>
                 </h3>
 
@@ -157,7 +137,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({
                     id={answerId}
                     role="region"
                     aria-labelledby={questionId}
-                    className="pt-3 pb-2 text-[15px] sm:text-[16px] text-slate-600 leading-relaxed max-w-2xl animate-in fade-in duration-150"
+                    className="pt-3.5 text-[15px] sm:text-[16px] text-slate-600 leading-relaxed max-w-2xl animate-in fade-in duration-150"
                   >
                     <p>{faq.answer}</p>
                   </div>

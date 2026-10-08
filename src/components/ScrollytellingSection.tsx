@@ -8,7 +8,6 @@ interface ScrollytellingSectionProps {
 
 interface NarrativePhase {
   id: number;
-  label: string;
   titlePrefix: string;
   titleItalic: string;
   subtitle: string;
@@ -20,7 +19,6 @@ interface NarrativePhase {
 const PHASES: NarrativePhase[] = [
   {
     id: 1,
-    label: '01',
     titlePrefix: 'Ritmo',
     titleItalic: 'consciente',
     subtitle:
@@ -31,7 +29,6 @@ const PHASES: NarrativePhase[] = [
   },
   {
     id: 2,
-    label: '02',
     titlePrefix: 'Espacio',
     titleItalic: 'mental',
     subtitle:
@@ -42,7 +39,6 @@ const PHASES: NarrativePhase[] = [
   },
   {
     id: 3,
-    label: '03',
     titlePrefix: 'Propósito y',
     titleItalic: 'calma',
     subtitle:
@@ -223,7 +219,7 @@ export const ScrollytellingSection: React.FC<ScrollytellingSectionProps> = ({
                     <button
                       type="button"
                       onClick={onOpenCheckout}
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-white px-7 py-3.5 rounded-xl bg-[#059669] hover:bg-[#047857] shadow-lg shadow-emerald-950/40 transition-all duration-200 focus-ring cursor-pointer"
+                      className="inline-flex items-center gap-2 text-sm font-semibold text-white px-7 py-3.5 rounded-md bg-[#059669] hover:bg-[#047857] border border-emerald-500/40 shadow-lg shadow-emerald-950/40 transition-all duration-150 focus-ring cursor-pointer"
                     >
                       <span>Certifícate por $45.000 COP</span>
                       <ArrowRight className="w-4 h-4" />
@@ -233,40 +229,6 @@ export const ScrollytellingSection: React.FC<ScrollytellingSectionProps> = ({
               </div>
             );
           })}
-        </div>
-
-        {/* INDICADOR LATERAL DISCRETO DE FASES */}
-        <div
-          aria-hidden="true"
-          className="absolute right-6 sm:right-10 top-1/2 -translate-y-1/2 z-20 hidden sm:flex flex-col gap-5 text-xs font-semibold"
-        >
-          {PHASES.map((phase) => {
-            const isCurrent = progress >= phase.start && progress <= phase.end;
-            return (
-              <div
-                key={phase.id}
-                className={`flex items-center gap-2.5 transition-all duration-300 ${
-                  isCurrent ? 'text-emerald-300 font-bold scale-105' : 'text-slate-400 opacity-60'
-                }`}
-              >
-                <span
-                  className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                    isCurrent ? 'bg-emerald-400 scale-150' : 'bg-slate-400'
-                  }`}
-                />
-                <span className="tracking-widest uppercase text-[11px]">{phase.titlePrefix} {phase.titleItalic}</span>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* HINT SUTIL AL INICIO DEL SCROLL */}
-        <div
-          className={`absolute bottom-8 inset-x-0 text-center transition-opacity duration-300 text-xs text-slate-300 tracking-wider font-medium pointer-events-none ${
-            progress < 0.08 ? 'opacity-80' : 'opacity-0'
-          }`}
-        >
-          Desplaza para avanzar en la secuencia ↓
         </div>
       </div>
     </section>

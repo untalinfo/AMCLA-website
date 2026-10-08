@@ -93,10 +93,8 @@ export default function App() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Feature 1 */}
-          <div className="bg-white rounded-2xl p-7 border border-slate-200/80 shadow-xs">
-            <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-800 flex items-center justify-center mb-5">
-              <ShieldCheck className="w-5 h-5 text-emerald-700" />
-            </div>
+          <div className="bg-white rounded-md p-7 border border-slate-200/60 shadow-2xs">
+            <ShieldCheck className="w-6 h-6 text-emerald-700 mb-4" strokeWidth={2} />
             <h3 className="font-bold text-lg text-slate-900 mb-2">Respaldo Normativo Oficial</h3>
             <p className="text-sm text-slate-600 leading-relaxed">
               Cumple con las exigencias de la Resolución 2674 de 2013 del Ministerio de Salud (Minsalud), Decreto 3075 y directrices del Codex Alimentarius para auditorías e INVIMA.
@@ -104,10 +102,8 @@ export default function App() {
           </div>
 
           {/* Feature 2 */}
-          <div className="bg-white rounded-2xl p-7 border border-slate-200/80 shadow-xs">
-            <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-800 flex items-center justify-center mb-5">
-              <FileCheck2 className="w-5 h-5 text-slate-800" />
-            </div>
+          <div className="bg-white rounded-md p-7 border border-slate-200/60 shadow-2xs">
+            <FileCheck2 className="w-6 h-6 text-emerald-700 mb-4" strokeWidth={2} />
             <h3 className="font-bold text-lg text-slate-900 mb-2">Certificado Inmediato con QR</h3>
             <p className="text-sm text-slate-600 leading-relaxed">
               Descarga tu certificado con código único verificable en línea por cualquier empleador o fiscalizador sanitario inmediatamente al aprobar.
@@ -115,10 +111,8 @@ export default function App() {
           </div>
 
           {/* Feature 3 */}
-          <div className="bg-white rounded-2xl p-7 border border-slate-200/80 shadow-xs">
-            <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-800 flex items-center justify-center mb-5">
-              <Clock className="w-5 h-5 text-slate-800" />
-            </div>
+          <div className="bg-white rounded-md p-7 border border-slate-200/60 shadow-2xs">
+            <Clock className="w-6 h-6 text-emerald-700 mb-4" strokeWidth={2} />
             <h3 className="font-bold text-lg text-slate-900 mb-2">Flexibilidad 100% Asincrónica</h3>
             <p className="text-sm text-slate-600 leading-relaxed">
               Estudia desde tu teléfono, tablet o computador en tus propios horarios con acceso ilimitado a las clases y material descargable.
@@ -163,7 +157,7 @@ export default function App() {
           <div className="flex-shrink-0 flex items-center gap-3">
             <button
               onClick={() => setIsCorporateOpen(true)}
-              className="px-7 py-3.5 bg-[#059669] hover:bg-[#047857] text-white font-semibold rounded-xl text-sm sm:text-base transition-all shadow-lg shadow-emerald-950/40 flex items-center gap-2.5 cursor-pointer focus-ring"
+              className="px-7 py-3.5 bg-[#059669] hover:bg-[#047857] text-white font-semibold rounded-md border border-emerald-500/40 text-sm sm:text-base transition-all shadow-md shadow-emerald-950/40 flex items-center gap-2.5 cursor-pointer focus-ring"
             >
               <span>Cotizar para Empresas</span>
               <ArrowRight className="w-4 h-4" />

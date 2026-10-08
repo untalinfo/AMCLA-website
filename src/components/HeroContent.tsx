@@ -26,12 +26,12 @@ export const HeroContent: React.FC<HeroContentProps> = ({
         Capacitación 100% online y certificada en Buenas Prácticas de Manufactura para manipuladores de alimentos, gastronomía y plantas de procesos.
       </p>
 
-      {/* Acciones principales */}
+      {/* Acciones principales - Estilo corporativo armonizado con bordes semi-redondeados */}
       <div className="mt-9 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 w-full sm:w-auto">
         <button
           type="button"
           onClick={onOpenCheckout}
-          className="inline-flex items-center justify-center gap-2 text-[15px] sm:text-[16px] font-semibold text-white px-8 py-3.5 rounded-xl bg-[#059669] hover:bg-[#047857] active:bg-[#065f46] shadow-lg shadow-emerald-950/30 transition-all duration-200 focus-ring cursor-pointer"
+          className="inline-flex items-center justify-center gap-2 text-[15px] sm:text-[16px] font-semibold text-white px-8 py-3.5 rounded-md bg-[#059669] hover:bg-[#047857] active:bg-[#065f46] border border-emerald-500/40 shadow-md shadow-emerald-950/30 transition-all duration-200 focus-ring cursor-pointer"
           aria-label="Certifícate Ahora en Manipulación de Alimentos y BPM"
         >
           <span>Certifícate Ahora — $45.000 COP</span>
@@ -41,10 +41,10 @@ export const HeroContent: React.FC<HeroContentProps> = ({
         <button
           type="button"
           onClick={onOpenClassroom}
-          className="inline-flex items-center justify-center gap-2 text-[15px] sm:text-[16px] font-semibold text-white px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 backdrop-blur-md transition-all duration-200 focus-ring cursor-pointer"
+          className="inline-flex items-center justify-center gap-2 text-[15px] sm:text-[16px] font-medium text-white px-7 py-3.5 rounded-md bg-white/10 hover:bg-white/15 border border-white/20 backdrop-blur-md transition-all duration-200 focus-ring cursor-pointer"
           aria-label="Acceder al Aula Virtual y Classroom"
         >
-          <GraduationCap className="w-5 h-5 text-emerald-300" />
+          <GraduationCap className="w-5 h-5 text-emerald-400" />
           <span>Aula Virtual</span>
         </button>
       </div>
